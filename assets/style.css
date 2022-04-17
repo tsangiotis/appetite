@@ -1,0 +1,876 @@
+/* Global variables. */
+:root {
+    /* Set sans-serif & mono fonts */
+    --content-width: 98rem;
+    --body-padding: 6.4rem;
+    --page-padding: 1.6rem;
+    --font-family: -apple-system, BlinkMacSystemFont, "Avenir Next", Avenir,
+        "Nimbus Sans L", Roboto, Noto, "Segoe UI", Arial, Helvetica,
+        "Helvetica Neue", sans-serif;
+    --font-family--mono: Consolas, Menlo, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+    --font-size-base: 11px;
+    --font-size-xx-small: 1.1rem;
+    --font-size-x-small: 1.2rem;
+    --font-size-small: 1.4rem;
+    --font-size-medium: 1.6rem;
+    --font-size-large: 1.8rem;
+    --font-size-x-large: 2.4rem;
+    --font-size-xx-large: 3.4rem;
+    --base-space: 1.25em;
+    --half-space: calc(var(--base-space) / 2);
+    --quarter-space: calc(var(--base-space) / 4);
+    --double-space: calc(var(--base-space) * 2)
+}
+
+@media(min-width: 60em) {
+    :root {
+        --font-size-xx-small: 1.2rem;
+        --font-size-x-small: 1.4rem;
+        --font-size-small: 1.6rem;
+        --font-size-medium: 1.8rem;
+        --font-size-large: 2rem;
+        --font-size-x-large: 2.8rem;
+        --font-size-xx-large: 4rem
+    }
+}
+
+:root {
+
+    /* Default (light) theme */
+    --white: #fff;
+    --bg: var(--white);
+    --accent-bg: #f5f7ff;
+    --danger-bg: #ff8484;
+    --text: #212121;
+    --text-light: #585858;
+    --border: #d8dae1;
+    --accent: #0d47a1;
+    --code: #d81b60;
+    --preformatted: #444;
+    --marked: #ffdd33;
+    --disabled: #efefef;
+    --shadow: rgba(var(--text-light), 0.5);
+}
+
+/* Dark theme */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --white: #dcdcdc;
+        --bg: #212121;
+        --accent-bg: #2b2b2b;
+        --danger-bg: #dd6b95;
+        --text: var(--white);
+        --text-light: #ababab;
+        --border: #666;
+        --accent: #186be7;
+        --code: #f06292;
+        --preformatted: #ccc;
+        --disabled: #111;
+    }
+
+    /* Add a bit of transparancy so light media isn't so glaring in dark mode */
+    img,
+    video {
+        opacity: 0.8;
+    }
+}
+
+html {
+    /* Set the font globally */
+    font-family: var(--font-family);
+    scroll-behavior: smooth;
+    font-size: var(--font-size-base);
+    line-height: 1.4;
+}
+
+/* Make the body a nice central block */
+body {
+    color: var(--text);
+    background: var(--bg);
+    font-size: var(--font-size-medium);
+    display: grid;
+    grid-template-columns:
+        1fr min(45rem, 90%) 1fr;
+    margin: 0;
+}
+
+
+body>* {
+    grid-column: 2;
+}
+
+/* Make the header bg full width, but the content inline with body */
+body>header {
+    background: var(--accent-bg);
+    border-bottom: 1px solid var(--border);
+    text-align: center;
+    padding: 0 0.5rem 2rem 0.5rem;
+    grid-column: 1 / -1;
+    box-sizing: border-box;
+}
+
+body>header h1 {
+    max-width: 1200px;
+    margin: 1rem auto;
+    text-transform: uppercase;
+    font-weight: normal;
+    font-size: var(--font-size-x-small);
+}
+
+body>header p {
+    max-width: 40rem;
+    margin: 1rem auto;
+}
+
+/* Add a little padding to ensure spacing is correct between content and nav */
+main {
+    padding-top: 1.5rem;
+}
+
+body>footer {
+    margin-top: 4rem;
+    padding: 2rem 1rem 1.5rem 1rem;
+    color: var(--text-light);
+    font-size: 0.9rem;
+    text-align: center;
+    border-top: 1px solid var(--border);
+}
+
+/* Format headers */
+h1 {
+    font-size: 3rem;
+}
+
+h2 {
+    font-size: 2.6rem;
+    margin-top: 3rem;
+}
+
+h3 {
+    font-size: 2rem;
+    margin-top: 3rem;
+}
+
+h4 {
+    font-size: 1.44rem;
+}
+
+h5 {
+    font-size: 1.15rem;
+}
+
+h6 {
+    font-size: 0.96rem;
+}
+
+/* Fix line height when title wraps */
+h1,
+h2,
+h3 {
+    line-height: 1.1;
+}
+
+/* Reduce header size on mobile */
+@media only screen and (max-width: 720px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    h2 {
+        font-size: 2.1rem;
+    }
+
+    h3 {
+        font-size: 1.75rem;
+    }
+
+    h4 {
+        font-size: 1.25rem;
+    }
+}
+
+h6,
+h5,
+h4,
+h3,
+h2,
+h1,
+.hdg {
+    font-weight: bold;
+    line-height: 1
+}
+
+h6,
+.hdg--x-small {
+    font-size: var(--font-size-x-small)
+}
+
+h5,
+.hdg--x-small {
+    font-size: var(--font-size-small)
+}
+
+h4,
+.hdg--x-small {
+    font-size: var(--font-size-medium)
+}
+
+h3,
+.hdg--large {
+    font-size: var(--font-size-large)
+}
+
+h2,
+.hdg--x-large {
+    font-size: var(--font-size-x-large)
+}
+
+h1,
+.hdg--xx-large {
+    font-size: var(--font-size-xx-large)
+}
+
+.txt--xx-small {
+    font-size: var(--font-size-xx-small)
+}
+
+.txt--x-small {
+    font-size: var(--font-size-x-small)
+}
+
+.txt--small {
+    font-size: var(--font-size-small)
+}
+
+.txt--medium {
+    font-size: var(--font-size-medium)
+}
+
+.txt--large {
+    font-size: var(--font-size-large)
+}
+
+.txt--x-large {
+    font-size: var(--font-size-x-large)
+}
+
+.txt--xx-large {
+    font-size: var(--font-size-xx-large)
+}
+
+.txt--bold {
+    font-weight: bold
+}
+
+.txt--normal {
+    font-weight: normal
+}
+
+.txt--subtle {
+    color: var(--text-light)
+}
+
+.txt--uppercase {
+    text-transform: uppercase
+}
+
+.txt--spread {
+    letter-spacing: .25rem
+}
+
+.u-nowrap {
+    white-space: nowrap
+}
+
+.txt--break-words {
+    word-wrap: break-word
+}
+
+
+/* Format links & buttons */
+a,
+a:visited {
+    color: var(--accent);
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+button,
+[role="button"],
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+    border: none;
+    border-radius: 5px;
+    background: var(--accent);
+    font-size: 1rem;
+    color: var(--white);
+    padding: 0.7rem 0.9rem;
+    margin: 0.5rem 0;
+}
+
+button[disabled],
+[role="button"][aria-disabled="true"],
+input[type="submit"][disabled],
+input[type="reset"][disabled],
+input[type="button"][disabled],
+input[type="checkbox"][disabled],
+input[type="radio"][disabled],
+select[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+input:disabled,
+textarea:disabled,
+select:disabled {
+    cursor: not-allowed;
+    background-color: var(--disabled);
+}
+
+input[type="range"] {
+    padding: 0;
+}
+
+/* Set the cursor to '?' while hovering over an abbreviation */
+abbr {
+    cursor: help;
+}
+
+button:focus,
+button:enabled:hover,
+[role="button"]:focus,
+[role="button"]:not([aria-disabled="true"]):hover,
+input[type="submit"]:focus,
+input[type="submit"]:enabled:hover,
+input[type="reset"]:focus,
+input[type="reset"]:enabled:hover,
+input[type="button"]:focus,
+input[type="button"]:enabled:hover {
+    filter: brightness(1.4);
+    cursor: pointer;
+}
+
+/* Format navigation */
+nav {
+    font-size: var(--font-size-x-small);
+    line-height: 2;
+    padding: 1rem 0 0 0;
+}
+
+/* Use flexbox to allow items to wrap, as needed */
+nav ul,
+nav ol {
+    align-content: space-around;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* List items are inline elements, make them behave more like blocks */
+nav ul li,
+nav ol li {
+    display: inline-block;
+}
+
+nav a,
+nav a:visited {
+    margin: 0 1rem 1rem 0;
+    border: 1px solid var(--border);
+    border-radius: 3em;
+    color: var(--text);
+    display: inline-block;
+    padding: 0.1rem 1rem;
+    text-decoration: none;
+}
+
+nav a:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+nav a:last-child {
+    margin-right: 0;
+}
+
+/* Reduce nav side on mobile */
+@media only screen and (max-width: 720px) {
+    nav a {
+        border: none;
+        padding: 0;
+        color: var(--text-light);
+        text-decoration: underline;
+        line-height: 1;
+    }
+}
+
+/* Format the expanding box */
+details {
+    background: var(--accent-bg);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
+
+summary {
+    cursor: pointer;
+    font-weight: bold;
+    padding: 0.6rem 1rem;
+}
+
+details[open] {
+    padding: 0.6rem 1rem 0.75rem 1rem;
+}
+
+details[open] summary+* {
+    margin-top: 0;
+}
+
+details[open] summary {
+    margin-bottom: 0.5rem;
+    padding: 0;
+}
+
+details[open]>*:last-child {
+    margin-bottom: 0;
+}
+
+/* Format tables */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 1.5rem 0;
+}
+
+td,
+th {
+    border: 1px solid var(--border);
+    text-align: left;
+    padding: 0.5rem;
+}
+
+th {
+    background: var(--accent-bg);
+    font-weight: bold;
+}
+
+tr:nth-child(even) {
+    /* Set every other cell slightly darker. Improves readability. */
+    background: var(--accent-bg);
+}
+
+table caption {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+/* Format forms */
+textarea,
+select,
+input {
+    font-size: inherit;
+    font-family: inherit;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--text);
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    box-shadow: none;
+    box-sizing: border-box;
+    width: 60%;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+/* Add arrow to drop-down */
+select {
+    background-image: linear-gradient(45deg, transparent 49%, var(--text) 51%),
+        linear-gradient(135deg, var(--text) 51%, transparent 49%);
+    background-position: calc(100% - 20px), calc(100% - 15px);
+    background-size: 5px 5px, 5px 5px;
+    background-repeat: no-repeat;
+}
+
+select[multiple] {
+    background-image: none !important;
+}
+
+/* checkbox and radio button style */
+input[type="checkbox"],
+input[type="radio"] {
+    vertical-align: bottom;
+    position: relative;
+}
+
+input[type="radio"] {
+    border-radius: 100%;
+}
+
+input[type="checkbox"]:checked,
+input[type="radio"]:checked {
+    background: var(--accent);
+}
+
+input[type="checkbox"]:checked::after {
+    /* Creates a rectangle with colored right and bottom borders which is rotated to look like a check mark */
+    content: " ";
+    width: 0.1em;
+    height: 0.25em;
+    border-radius: 0;
+    position: absolute;
+    top: 0.05em;
+    left: 0.18em;
+    background: transparent;
+    border-right: solid var(--bg) 0.08em;
+    border-bottom: solid var(--bg) 0.08em;
+    font-size: 1.8em;
+    transform: rotate(45deg);
+}
+
+input[type="radio"]:checked::after {
+    /* creates a colored circle for the checked radio button  */
+    content: " ";
+    width: 0.25em;
+    height: 0.25em;
+    border-radius: 100%;
+    position: absolute;
+    top: 0.125em;
+    background: var(--bg);
+    left: 0.125em;
+    font-size: 32px;
+}
+
+/* Make the textarea wider than other inputs */
+textarea {
+    width: 80%;
+}
+
+/* Makes input fields wider on smaller screens */
+@media only screen and (max-width: 720px) {
+
+    textarea,
+    select,
+    input {
+        width: 100%;
+    }
+}
+
+/* Ensures the checkbox and radio inputs do not have a set width like other input fields */
+input[type="checkbox"],
+input[type="radio"] {
+    width: auto;
+}
+
+/* do not show border around file selector button */
+input[type="file"] {
+    border: 0;
+}
+
+/* Misc body elements */
+hr {
+    color: var(--border);
+    border-top: 1px;
+    margin: 1rem auto;
+}
+
+mark {
+    padding: 2px 5px;
+    border-radius: 4px;
+    background: var(--marked);
+}
+
+main img,
+main video {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+figure {
+    margin: 0;
+    text-align: center;
+}
+
+figcaption {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    margin-bottom: 1rem;
+}
+
+blockquote {
+    margin: 2rem 0 2rem 2rem;
+    padding: 0.4rem 0.8rem;
+    border-left: 0.35rem solid var(--accent);
+    color: var(--text-light);
+    font-style: italic;
+}
+
+cite {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    font-style: normal;
+}
+
+/* Use mono font for code elements */
+code,
+pre,
+pre span,
+kbd,
+samp {
+    font-family: --font-family--mono color: var(--code);
+}
+
+kbd {
+    color: var(--preformatted);
+    border: 1px solid var(--preformatted);
+    border-bottom: 3px solid var(--preformatted);
+    border-radius: 5px;
+    padding: 0.1rem 0.4rem;
+}
+
+pre {
+    padding: 1rem 1.4rem;
+    max-width: 100%;
+    overflow: auto;
+    color: var(--preformatted);
+    background: var(--accent-bg);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+}
+
+/* Fix embedded code within pre */
+pre code {
+    color: var(--preformatted);
+    background: none;
+    margin: 0;
+    padding: 0;
+}
+
+.i-flex {
+    display: inline-flex !important
+}
+
+.flex {
+    display: flex
+}
+
+.flex--column {
+    display: flex;
+    flex-direction: column
+}
+
+.flex--centered {
+    justify-content: center
+}
+
+.flex--align-center {
+    display: flex;
+    align-items: center
+}
+
+.flex-item--grow {
+    flex-grow: 1
+}
+
+.align--center {
+    text-align: center
+}
+
+@media(min-width: 40em) {
+    .align--center\@medium {
+        text-align: center
+    }
+}
+
+.push {
+    margin: var(--base-space) !important
+}
+
+.push--top {
+    margin-top: var(--base-space) !important
+}
+
+.push--bottom {
+    margin-bottom: var(--base-space) !important
+}
+
+.push--ends {
+    margin-top: var(--base-space) !important;
+    margin-bottom: var(--base-space) !important
+}
+
+.push_half {
+    margin: var(--half-space) !important
+}
+
+.push_half--top {
+    margin-top: var(--half-space) !important
+}
+
+.push_half--bottom {
+    margin-bottom: var(--half-space) !important
+}
+
+.push_half--ends {
+    margin-top: var(--half-space) !important;
+    margin-bottom: var(--half-space) !important
+}
+
+.push_quarter {
+    margin: var(--quarter-space) !important
+}
+
+.push_quarter--top {
+    margin-top: var(--quarter-space) !important
+}
+
+.push_quarter--bottom {
+    margin-bottom: var(--quarter-space) !important
+}
+
+.push_quarter--ends {
+    margin-top: var(--quarter-space) !important;
+    margin-bottom: var(--quarter-space) !important
+}
+
+.push_double {
+    margin: var(--double-space) !important
+}
+
+.push_double--top {
+    margin-top: var(--double-space) !important
+}
+
+.push_double--bottom {
+    margin-bottom: var(--double-space) !important
+}
+
+.push_double--ends {
+    margin-top: var(--double-space) !important;
+    margin-bottom: var(--double-space) !important
+}
+
+.pad_half--bottom {
+    padding-bottom: var(--half-space) !important
+}
+
+.pad_half--top {
+    padding-top: var(--half-space) !important
+}
+
+.flush {
+    margin: 0 !important
+}
+
+.flush--top {
+    margin-top: 0 !important
+}
+
+.flush--bottom {
+    margin-bottom: 0 !important
+}
+
+.flush--ends {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important
+}
+
+.undecorated {
+    color: inherit;
+    text-decoration: none;
+}
+
+.avatar {
+    width: 2.625em;
+    height: 2.625em;
+    border-radius: 100%;
+    z-index: 1;
+    display: block;
+    position: relative;
+    color: transparent;
+    background-color: var(--color-bg--surface-glint-opaque)
+}
+
+.avatar--small {
+    width: 2.25em;
+    height: 2.25em
+}
+
+.post__title {
+    text-align: center;
+}
+
+.card {
+    border: 1px solid var(--border);
+    border-radius: .2em;
+    color: var(--text) !important;
+    box-shadow: 5px 5px 7px var(--shadow);
+    padding: 1.5em
+}
+
+@media(min-width: 40em) {
+    .card {
+        padding: 2em
+    }
+}
+
+.pagination ul,
+.pagination ol {
+    align-content: space-around;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* List items are inline elements, make them behave more like blocks */
+.pagination ul li,
+.pagination ol li {
+    display: inline-block;
+}
+
+.pagination a,
+.pagination a:visited {
+    margin: 0 1rem 1rem 0;
+    border: 1px solid var(--border);
+    border-radius: 3em;
+    color: var(--text);
+    display: inline-block;
+    padding: 0.1rem 1rem;
+    text-decoration: none;
+    word-wrap: normal;
+}
+
+.pagination a:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+.pagination a:last-child {
+    margin-right: 0;
+}
+
+.subscribe-top {
+    margin: 0 auto;
+    overflow: initial;
+    transform: rotate(-1deg)
+}
+
+@media(min-width: 40em) {
+    .subscribe-top {
+        max-width: 45rem
+    }
+}
+
+.

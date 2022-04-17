@@ -1,0 +1,19 @@
+<form action="{{site.subscribe_post}}" accept-charset="UTF-8" data-remote="true" method="post">
+  <label for="email" markdown="1">
+    {% if include.label %}
+    {{ include.label }}
+    {% else %}
+    Subscribe below to get future <a href="/posts">posts</a> from {{site.author}}
+    {% endif %}
+  </label>
+
+  <div>
+    <input type="email" name="email" id="email" placeholder="Type your email…" required="">
+
+    <button>Subscribe</button>
+  </div>
+
+</form>
+<p class="txt--x-small flush--bottom">
+  Or grab the <a class="permalink" href="/feed">RSS feed</a>
+</p>

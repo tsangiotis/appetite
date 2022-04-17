@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xml:lang="en" xmlns="https:///www.w3.org/1999/xhtml">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{% if page.title %}{{ page.title }}{% else %}{{site.title}}{% endif %}</title>
+
+  <link rel="icon" type="image/png" sizes="300x300" href="{{site.logo}}">
+  <link rel="stylesheet" href="/assets/style.css" defer>
+
+  {% if page.remote %}
+  <link rel="canonical" href="{{ page.remote_url }}" />
+  <meta http-equiv="refresh" content="1; url={{ page.remote_url }}">
+  {% endif %}
+</head>
+
+<body>
+
+
+  {% include header.html %}
+  <main>
+    {{ content }}
+  </main>
+
+  <footer>
+    <p>&copy;{{site.author}}</p>
+    <p>{{site.email}}</p>
+  </footer>
+
+</body>
+
+</html>
