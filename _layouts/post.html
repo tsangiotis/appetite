@@ -38,7 +38,7 @@ layout: default
 </a>
 
 {% if page.comments %}
-<div class="post__comments" id="{{ page.slug }}__comments">
+<div class="post__comments" id="{{ page.slug }}__comments" markdown="1">
   {% include comments/{{ page.slug }}.html %}
 </div>
 {% endif %}
