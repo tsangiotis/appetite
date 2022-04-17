@@ -2,25 +2,7 @@
 layout: default
 ---
 
----
-layout: simple
----
-
-<article>
-  <p class="text-center">
-    <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%b %d, %Y"
-  }}</time>
-  </p>
-  <h1 class="text-center">{{ page.title }}{% if post.remote %}🔗{% endif %}</h1>
-  <div>
-    {% if page.remote %}
-    <center>
-      <a href="{{page.remote_url}}">Read <i>{{page.title}}</i> Here →</a>
-    </center>
-    {% endif %}
-  </div>
-  {{ content }}
-</article>
+{% include post.html %}
 
 <section class="card card--subscribe subscribe-bottom push_double--bottom card align--center txt--x-small">
   {% include subscribe.html %}

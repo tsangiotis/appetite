@@ -9,6 +9,22 @@
   <link rel="icon" type="image/png" sizes="300x300" href="{{site.logo}}">
   <link rel="stylesheet" href="/assets/style.css" defer>
 
+  <link rel="alternate" type="application/atom+xml" title="Feed" href="{{site.base_url}}/feed">
+
+  <link rel="apple-touch-icon" sizes="300x300" href="{{site.logo}}">
+  <link rel="icon" type="image/png" sizes="300x300" href="{{site.logo}}">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="{{site.logo}}">
+
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="{{ page.url }}">
+  <meta property="og:title" content="{{ page.title }}">
+  <meta property="og:description"
+    content="{% if page.description %}{{ page.description }}{% else %}{{ page.title }}{% endif %}">
+  <meta property="og:image" content="{% if page.image %}{{ page.image }}{% else %}{{ site.logo }}{% endif %}">
+
+
   {% if page.remote %}
   <link rel="canonical" href="{{ page.remote_url }}" />
   <meta http-equiv="refresh" content="1; url={{ page.remote_url }}">
