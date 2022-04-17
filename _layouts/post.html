@@ -1,8 +1,8 @@
 ---
 layout: default
 ---
-
-<article class="post push_double--bottom">
+<!-- 
+<article class="post push_double--bottom" itemscope itemtype="http://schema.org/BlogPosting">
   <header>
     <div class="post__title">
       <span class="txt--x-small align--center flush--top push_quarter--bottom txt--subtle">
@@ -10,16 +10,18 @@ layout: default
         {% if page.lang == 'el' %} &middot; 🇬🇷{% endif %}{% if page.remote %} &middot; 🔗{% endif %}
       </span>
       <h2 class="flush--top">
-        <a class="undecorated" href="{{ page.url }}">{{ page.title }}</a>
+        <a class="undecorated" href="{{ page.url }}">{{ page.title | escape }}</a>
       </h2>
     </div>
   </header>
 
-  <div class="post__content">
+  <div class="post__content" itemprop="articleBody">
     {{ content }}
   </div>
 
-</article>
+</article> -->
+
+{% include post.html post=page %}
 
 <section class="card card--subscribe subscribe-bottom push_double--bottom card align--center txt--x-small">
   {% include subscribe.html %}
@@ -40,6 +42,6 @@ layout: default
 
 {% if page.comments %}
 <div class="post__comments" id="{{ page.slug }}__comments">
-  {% include "comments/{{ page.slug }}.html" %}
+  {% include comments/{{ page.slug }}.html %}
 </div>
 {% endif %}
