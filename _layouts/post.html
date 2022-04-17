@@ -2,7 +2,24 @@
 layout: default
 ---
 
-{% include post.html %}
+<article class="post push_double--bottom">
+  <header>
+    <div class="post__title">
+      <span class="txt--x-small align--center flush--top push_quarter--bottom txt--subtle">
+        <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%b %d, %Y" }}</time>
+        {% if page.lang == 'el' %} &middot; 🇬🇷{% endif %}{% if page.remote %} &middot; 🔗{% endif %}
+      </span>
+      <h2 class="flush--top">
+        <a class="undecorated" href="{{ page.url }}">{{ page.title }}</a>
+      </h2>
+    </div>
+  </header>
+
+  <div class="post__content">
+    {{ content }}
+  </div>
+
+</article>
 
 <section class="card card--subscribe subscribe-bottom push_double--bottom card align--center txt--x-small">
   {% include subscribe.html %}
@@ -21,8 +38,8 @@ layout: default
   <button>Comment via email</button>
 </a>
 
-{% if post.comments %}
+{% if page.comments %}
 <div class="post__comments">
-  {% include "comments/{{ post.slug }}.html" %}
+  {% include "comments/{{ page.slug }}.html" %}
 </div>
 {% endif %}
