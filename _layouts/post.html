@@ -38,6 +38,7 @@ layout: default
 </a>
 
 {% if page.comments %}
+<strong>💬 Comments</strong>
 <div class="post__comments" id="{{ page.slug }}__comments" markdown="1">
   {% capture comments %}{% include comments/{{ page.slug }}.md %}{% endcapture %}
   {{ comments | markdownify }}

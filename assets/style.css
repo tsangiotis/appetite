@@ -873,4 +873,14 @@ pre code {
     }
 }
 
-.
+.post__comments h1 {
+    font-size: var(--font-size-medium);
+}
+
+.post__comments blockquote {
+    margin: 2rem 0 2rem 2rem;
+    padding: 0.4rem 0.8rem;
+    border-left: 0.35rem solid var(--accent);
+    color: var(--text-ink);
+    font-style: normal;
+}
