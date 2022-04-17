@@ -1,0 +1,29 @@
+<article class="post push_double--bottom">
+
+  <header>
+    <div class="post__title">
+      <span class="txt--x-small align--center flush--top push_quarter--bottom txt--subtle">
+        <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %d, %Y" }}</time>
+        {% if post.lang == 'el' %} &middot; 🇬🇷{% endif %}{% if post.remote %} &middot; 🔗{% endif %}
+      </span>
+      <h2 class="flush--top">
+        <a class="undecorated" href="{{ post.url }}">{{ post.title }}</a>
+      </h2>
+    </div>
+  </header>
+
+  <div class="post__content">
+    {% if page.url == "/" %}
+    {% if post.excerpt %}
+    {{ post.excerpt  | strip_html | truncatewords: 25 }}
+    {% else %}
+
+    {{post.content | strip_html | truncatewords: 25 }}
+    {% endif %}
+
+    {% else %}
+    {{post.content}}
+    {% endif %}
+  </div>
+
+</article>
