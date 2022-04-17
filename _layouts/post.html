@@ -21,4 +21,8 @@ layout: default
   <button>Comment via email</button>
 </a>
 
-{{ comments }}
+{% if post.comments %}
+<div class="post__comments">
+  {% incude "_comments/{{ post.slug }}.html" %}
+</div>
+{% endif %}
