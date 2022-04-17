@@ -8,6 +8,9 @@
 
   <link rel="icon" type="image/png" sizes="300x300" href="{{site.logo}}">
   <link rel="stylesheet" href="/assets/style.css" defer>
+  {% if site.additional_styles %}
+  <link rel="stylesheet" href="{{ additional_styles }}" defer>
+  {% endif %}
 
   <link rel="alternate" type="application/atom+xml" title="Feed" href="{{site.base_url}}/feed">
 
@@ -34,14 +37,40 @@
   {% if site.colors %}
   <style>
     :root {
-      --accent: {{ site.colors.accent }};
-      --accent-bg: {{ site.colors.accent-bg }};
+      --accent: {
+          {
+          site.colors.accent
+        }
+      }
+
+      ;
+
+      --accent-bg: {
+          {
+          site.colors.accent-bg
+        }
+      }
+
+      ;
     }
 
     @media (prefers-color-scheme: dark) {
       :root {
-        --accent: {{ site.colors.dark.accent }};
-        --accent-bg: {{ site.colors.dark.accent-bg }};
+        --accent: {
+            {
+            site.colors.dark.accent
+          }
+        }
+
+        ;
+
+        --accent-bg: {
+            {
+            site.colors.dark.accent-bg
+          }
+        }
+
+        ;
       }
     }
   </style>
