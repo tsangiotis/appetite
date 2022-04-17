@@ -29,6 +29,23 @@
   <link rel="canonical" href="{{ page.remote_url }}" />
   <meta http-equiv="refresh" content="1; url={{ page.remote_url }}">
   {% endif %}
+
+  <!-- Themming -->
+  {% if site.colors %}
+  <style>
+    :root {
+      --accent: {{ site.colors.accent }};
+      --accent-bg: {{ site.colors.accent-bg }};
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --accent: {{ site.colors.dark.accent }};
+        --accent-bg: {{ site.colors.dark.accent-bg }};
+      }
+    }
+  </style>
+  {% endif %}
 </head>
 
 <body>
