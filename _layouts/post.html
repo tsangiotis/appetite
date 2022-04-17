@@ -39,6 +39,7 @@ layout: default
 
 {% if page.comments %}
 <div class="post__comments" id="{{ page.slug }}__comments" markdown="1">
-  {% include comments/{{ page.slug }}.md %}
+  {% capture comments %}{% include comments/{{ page.slug }}.md %}{% endcapture %}
+  {{ comments | markdownify }}
 </div>
 {% endif %}
